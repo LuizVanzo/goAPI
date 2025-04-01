@@ -40,7 +40,7 @@ Esta é uma API RESTful desenvolvida em Go utilizando o framework Fiber e o ORM 
    go mod tidy
    ```
 
-4. Configure o banco de dados no arquivo `main.go` (caso necessário):
+4. Configure o banco de dados no arquivo `main.go`:
    ```go
    dsn := "host=localhost user=postgres password=postgres dbname=products port=5432 sslmode=disable"
    ```
