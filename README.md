@@ -32,7 +32,7 @@ Esta é uma API RESTful desenvolvida em Go utilizando o framework Fiber e o ORM 
 
 2. Entre no diretório do projeto:
    ```sh
-   cd seu-repositorio
+   cd Trab
    ```
 
 3. Instale as dependências:
