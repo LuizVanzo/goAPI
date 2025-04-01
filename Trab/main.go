@@ -31,12 +31,28 @@ func initDatabase() {
 	DB = db
 }
 
+// @Summary Lista todos os produtos
+// @Description Retorna uma lista de todos os produtos no banco de dados
+// @Tags products
+// @Accept json
+// @Produce json
+// @Success 200 {array} Product
+// @Router /products [get]
 func getProducts(c *fiber.Ctx) error {
 	var products []Product
 	DB.Find(&products)
 	return c.JSON(products)
 }
 
+// @Summary Obtém um produto específico
+// @Description Retorna um produto baseado no ID fornecido
+// @Tags products
+// @Accept json
+// @Produce json
+// @Param id path string true "ID do Produto"
+// @Success 200 {object} Product
+// @Failure 404 {object} map[string]string "error: Produto não encontrado"
+// @Router /products/{id} [get]
 func getProduct(c *fiber.Ctx) error {
 	id := c.Params("id")
 	var product Product
@@ -46,6 +62,15 @@ func getProduct(c *fiber.Ctx) error {
 	return c.JSON(product)
 }
 
+// @Summary Cria um novo produto
+// @Description Adiciona um novo produto ao banco de dados
+// @Tags products
+// @Accept json
+// @Produce json
+// @Param product body Product true "Dados do Produto"
+// @Success 201 {object} Product
+// @Failure 400 {object} map[string]string "error: Requisição inválida"
+// @Router /products [post]
 func createProduct(c *fiber.Ctx) error {
 	product := new(Product)
 	if err := c.BodyParser(product); err != nil {
@@ -55,6 +80,17 @@ func createProduct(c *fiber.Ctx) error {
 	return c.Status(201).JSON(product)
 }
 
+// @Summary Atualiza um produto existente
+// @Description Atualiza os dados de um produto baseado no ID
+// @Tags products
+// @Accept json
+// @Produce json
+// @Param id path string true "ID do Produto"
+// @Param product body Product true "Dados do Produto"
+// @Success 200 {object} Product
+// @Failure 400 {object} map[string]string "error: Requisição inválida"
+// @Failure 404 {object} map[string]string "error: Produto não encontrado"
+// @Router /products/{id} [put]
 func updateProduct(c *fiber.Ctx) error {
 	id := c.Params("id")
 	var product Product
@@ -68,6 +104,15 @@ func updateProduct(c *fiber.Ctx) error {
 	return c.JSON(product)
 }
 
+// @Summary Deleta um produto
+// @Description Remove um produto baseado no ID
+// @Tags products
+// @Accept json
+// @Produce json
+// @Param id path string true "ID do Produto"
+// @Success 204
+// @Failure 500 {object} map[string]string "error: Erro ao deletar produto"
+// @Router /products/{id} [delete]
 func deleteProduct(c *fiber.Ctx) error {
 	id := c.Params("id")
 	if err := DB.Delete(&Product{}, id).Error; err != nil {

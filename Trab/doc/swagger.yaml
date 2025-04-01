@@ -1,0 +1,153 @@
+definitions:
+  main.Product:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      price:
+        type: number
+      stock:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /products:
+    get:
+      consumes:
+      - application/json
+      description: Retorna uma lista de todos os produtos no banco de dados
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Product'
+            type: array
+      summary: Lista todos os produtos
+      tags:
+      - products
+    post:
+      consumes:
+      - application/json
+      description: Adiciona um novo produto ao banco de dados
+      parameters:
+      - description: Dados do Produto
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/main.Product'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.Product'
+        "400":
+          description: 'error: Requisição inválida'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Cria um novo produto
+      tags:
+      - products
+  /products/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove um produto baseado no ID
+      parameters:
+      - description: ID do Produto
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "500":
+          description: 'error: Erro ao deletar produto'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Deleta um produto
+      tags:
+      - products
+    get:
+      consumes:
+      - application/json
+      description: Retorna um produto baseado no ID fornecido
+      parameters:
+      - description: ID do Produto
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Product'
+        "404":
+          description: 'error: Produto não encontrado'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Obtém um produto específico
+      tags:
+      - products
+    put:
+      consumes:
+      - application/json
+      description: Atualiza os dados de um produto baseado no ID
+      parameters:
+      - description: ID do Produto
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Dados do Produto
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/main.Product'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Product'
+        "400":
+          description: 'error: Requisição inválida'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: 'error: Produto não encontrado'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualiza um produto existente
+      tags:
+      - products
+swagger: "2.0"
