@@ -7,6 +7,8 @@ import (
 	"github.com/gofiber/swagger"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+
+	_ "Trab/doc"
 )
 
 var DB *gorm.DB
