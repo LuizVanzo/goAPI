@@ -55,11 +55,11 @@ Esta é uma API RESTful desenvolvida em Go utilizando o framework Fiber e o ORM 
 ## Comparativo com Outras Tecnologias e Tendências
 
 ### Conteúdos Estáticos e Renderização no Servidor
-A API é puramente backend e não lida com renderização de conteúdo estático. No entanto, poderia ser integrada a frameworks como Next.js ou SvelteKit para renderização no servidor e entrega otimizada de conteúdo estático.
+A API é puramente backend e não lida com renderização de conteúdo estático.
 
 ### Microsserviços
-A arquitetura atual é monolítica, mas a API poderia ser modularizada e integrada a um ecossistema de microsserviços utilizando ferramentas como Kubernetes, Docker e mensagens assíncronas (RabbitMQ, Kafka).
+A arquitetura atual é monolítica
 
 ### Middleware de Aplicações Descentralizadas (Blockchain)
-A API atualmente usa um banco de dados relacional centralizado. Para descentralização e transparência, poderia integrar tecnologias blockchain para rastreamento de produtos, garantindo imutabilidade e segurança dos registros.
+A API atualmente usa um banco de dados relacional centralizado. 
 
