@@ -27,7 +27,7 @@ Esta é uma API RESTful desenvolvida em Go utilizando o framework Fiber e o ORM 
 
 1. Clone este repositório:
    ```sh
-   git clone [https://github.com/LuizVanzo/goAPI.git]
+   git clone https://github.com/LuizVanzo/goAPI.git
    ```
 
 2. Entre no diretório do projeto:
